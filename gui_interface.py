@@ -4,39 +4,46 @@ import player_moves_management as pmm
 
 turn_count = 0
 button_status = [0,0,0,0,0,0,0,0,0]
-button_symbol_status = ['#','#','#','#','#','#','#','#','#']
 winner_status = False
+
+def match_result(player_symbol):   
+    check_for_winner(player_symbol)
+    check_draw()
+
+def check_draw():
+    if winner_status == False and turn_count == 9:
+        messagebox.showinfo("Draw","It is a draw")
 
 def check_for_winner(player_symbol):
     global turn_count
 
     # check all horizontal buttons  
-    if button_1["text"] == button_2["text"] and button_2["text"] == button_3["text"] and button_3 == player_symbol:
+    if button_1["text"] == button_2["text"] and button_2["text"] == button_3["text"] and button_3["text"] == player_symbol:
         winner_symbol = pmm.return_player_turn_symbol(turn_count)
         display_winner(winner_symbol)
-    if button_4["text"] == button_5["text"] and button_5["text"] == button_6["text"] and button_6 == player_symbol:
+    if button_4["text"] == button_5["text"] and button_5["text"] == button_6["text"] and button_6["text"] == player_symbol:
         winner_symbol = pmm.return_player_turn_symbol(turn_count)
         display_winner(winner_symbol)
-    if button_7["text"] == button_8["text"] and button_8["text"] == button_9["text"] and button_9 == player_symbol:
+    if button_7["text"] == button_8["text"] and button_8["text"] == button_9["text"] and button_9["text"] == player_symbol:
         winner_symbol = pmm.return_player_turn_symbol(turn_count)
         display_winner(winner_symbol)
 
     # check all vertical buttons
-    if button_1["text"] == button_4["text"] and button_4["text"] == button_7["text"] and button_7 == player_symbol:
+    if button_1["text"] == button_4["text"] and button_4["text"] == button_7["text"] and button_7["text"] == player_symbol:
         winner_symbol = pmm.return_player_turn_symbol(turn_count)
         display_winner(winner_symbol)
-    if button_2["text"] == button_5["text"] and button_5["text"] == button_8["text"] and button_8 == player_symbol:
+    if button_2["text"] == button_5["text"] and button_5["text"] == button_8["text"] and button_8["text"] == player_symbol:
         winner_symbol = pmm.return_player_turn_symbol(turn_count)
         display_winner(winner_symbol)
-    if button_3["text"] == button_6["text"] and button_6["text"] == button_9["text"] and button_9 == player_symbol:
+    if button_3["text"] == button_6["text"] and button_6["text"] == button_9["text"] and button_9["text"] == player_symbol:
         winner_symbol = pmm.return_player_turn_symbol(turn_count)
         display_winner(winner_symbol)
 
     # check all diagonal buttons
-    if button_1["text"] == button_5["text"] and button_5["text"] == button_9["text"] and button_9 == player_symbol:
+    if button_1["text"] == button_5["text"] and button_5["text"] == button_9["text"] and button_9["text"] == player_symbol:
         winner_symbol = pmm.return_player_turn_symbol(turn_count)
         display_winner(winner_symbol)
-    if button_3["text"] == button_5["text"] and button_5["text"] == button_7["text"] and button_7 == player_symbol:
+    if button_3["text"] == button_5["text"] and button_5["text"] == button_7["text"] and button_7["text"] == player_symbol:
         winner_symbol = pmm.return_player_turn_symbol(turn_count)
         display_winner(winner_symbol)
     
@@ -51,7 +58,6 @@ def display_winner(winner_symbol):
 
 def button_1_press():
     global button_status
-    #global button_symbol_status
     global turn_count
     get_status = pmm.check_button_already_pressed(button_status[0])
     if get_status == 1:
@@ -61,8 +67,7 @@ def button_1_press():
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_1["text"] = player_symbol
-        #button_symbol_status[0] = player_symbol
-        check_for_winner(player_symbol)
+        match_result(player_symbol)
     
 def button_2_press():
     global turn_count
@@ -75,7 +80,7 @@ def button_2_press():
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_2["text"] = player_symbol
-        check_for_winner(player_symbol)
+        match_result(player_symbol)
 
 def button_3_press():
     global turn_count
@@ -88,7 +93,7 @@ def button_3_press():
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_3["text"] = player_symbol
-        check_for_winner(player_symbol)
+        match_result(player_symbol)
 
 def button_4_press():
     global turn_count
@@ -101,7 +106,7 @@ def button_4_press():
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_4["text"] = player_symbol
-        check_for_winner(player_symbol)
+        match_result(player_symbol)
 
 def button_5_press():
     global turn_count
@@ -114,7 +119,7 @@ def button_5_press():
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_5["text"] = player_symbol
-        check_for_winner(player_symbol)
+        match_result(player_symbol)
 
 
 def button_6_press():
@@ -128,7 +133,7 @@ def button_6_press():
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_6["text"] = player_symbol
-        check_for_winner(player_symbol)
+        match_result(player_symbol)
 
 
 def button_7_press():
@@ -142,7 +147,7 @@ def button_7_press():
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_7["text"] = player_symbol
-        check_for_winner(player_symbol)
+        match_result(player_symbol)
 
 def button_8_press():
     global turn_count
@@ -155,7 +160,7 @@ def button_8_press():
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_8["text"] = player_symbol
-        check_for_winner(player_symbol)
+        match_result(player_symbol)
 
 def button_9_press():
     global turn_count
@@ -168,7 +173,7 @@ def button_9_press():
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_9["text"] = player_symbol
-        check_for_winner(player_symbol)
+        match_result(player_symbol)
 
 window = tk.Tk()
 
@@ -205,7 +210,6 @@ button_8.place(x=100,y=160,width=50,height=50)
 button_9 = tk.Button(window,command=button_9_press)
 button_9.place(x=155,y=160,width=50,height=50)
 
-if turn_count == 9 and winner_status == False:
-    messagebox.showinfo("Draw","It is a draw")
+
 
 window.mainloop()
