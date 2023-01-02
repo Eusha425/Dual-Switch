@@ -3,17 +3,20 @@ from tkinter import messagebox
 import player_moves_management as pmm
 
 turn_count = 0
-button_status = [0,0,0,0,0,0,0,0,0]
+button_status = [0,0,0,0,0,0,0,0,0] # for figuring out if the button position has already been selected
 winner_status = False
 
+# driver function for finding the player status
 def match_result(player_symbol):   
     check_for_winner(player_symbol)
     check_draw()
 
+# a message for when a game is draw
 def check_draw():
     if winner_status == False and turn_count == 9:
         messagebox.showinfo("Draw","It is a draw")
 
+# checks each and every position to figure out a winner either player 1(X) or player 2(O)
 def check_for_winner(player_symbol):
     global turn_count
 
@@ -47,6 +50,7 @@ def check_for_winner(player_symbol):
         winner_symbol = pmm.return_player_turn_symbol(turn_count)
         display_winner(winner_symbol)
     
+# displays a message on whoever won the game onto the screen
 def display_winner(winner_symbol):
     global winner_status
     if winner_symbol == "X":
@@ -56,17 +60,21 @@ def display_winner(winner_symbol):
         messagebox.showinfo("Congratulations", "Player 2 winner")
         winner_status = True
 
+# the following are functions of each button, the logic and code is the same for all 9 of them
 def button_1_press():
     global button_status
     global turn_count
+    # validation if a button is already pressed
     get_status = pmm.check_button_already_pressed(button_status[0])
     if get_status == 1:
         messagebox.showerror("Error", "Button Already Pressed")
     else:
+        # updating the button
         button_status[0] = 1
         turn_count += 1
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_1["text"] = player_symbol
+        # after each update checks if anyone won the game
         match_result(player_symbol)
     
 def button_2_press():
@@ -121,7 +129,6 @@ def button_5_press():
         button_5["text"] = player_symbol
         match_result(player_symbol)
 
-
 def button_6_press():
     global turn_count
     global button_status
@@ -134,7 +141,6 @@ def button_6_press():
         player_symbol = pmm.return_player_turn_symbol(turn_count)
         button_6["text"] = player_symbol
         match_result(player_symbol)
-
 
 def button_7_press():
     global turn_count
@@ -175,6 +181,30 @@ def button_9_press():
         button_9["text"] = player_symbol
         match_result(player_symbol)
 
+# initial game state
+def reset_button():
+    global turn_count
+    global button_status
+    global winner_status
+
+    turn_count = 0
+    winner_status = False
+
+    button_1["text"] = ""
+    button_2["text"] = ""
+    button_3["text"] = ""
+    button_4["text"] = ""
+    button_5["text"] = ""
+    button_6["text"] = ""
+    button_7["text"] = ""
+    button_8["text"] = ""
+    button_9["text"] = ""
+
+    for i in range(9):
+        button_status[i] = 0
+
+# creates the overall look of the app
+
 window = tk.Tk()
 
 window.title("GUI TikTacToe")
@@ -183,6 +213,7 @@ window.geometry("250x350")
 welcome_label = tk.Label(text="Welcome to Tic Tac Toe", relief="groove")
 welcome_label.place(x = 60, y = 15)
 
+# creating the button widgets
 button_1 = tk.Button(window, command=button_1_press)
 button_1.place(x=45,y=50,width=50,height=50)
 
@@ -210,6 +241,8 @@ button_8.place(x=100,y=160,width=50,height=50)
 button_9 = tk.Button(window,command=button_9_press)
 button_9.place(x=155,y=160,width=50,height=50)
 
-
+reset_button = tk.Button(window,text="Reset Game!",command=reset_button)
+reset_button.place(x=35,y=250)
 
 window.mainloop()
+
