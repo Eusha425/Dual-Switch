@@ -244,5 +244,8 @@ button_9.place(x=155,y=160,width=50,height=50)
 reset_button = tk.Button(window,text="Reset Game!",command=reset_button)
 reset_button.place(x=35,y=250)
 
+author_label = tk.Label(text="Author: Gazi Eusha",relief="ridge")
+author_label.place(x=135,y=253)
+
 window.mainloop()
 
