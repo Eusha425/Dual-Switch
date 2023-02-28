@@ -27,7 +27,5 @@ Copy the two available codes in the respository and save them in the same direct
 
 To _use_ the game, _run_ the **gui_interface.py** file in your [IDE](https://code.visualstudio.com/download).
 
-## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
 
