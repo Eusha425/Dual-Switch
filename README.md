@@ -26,6 +26,7 @@ A desktop application with graphical UI, to help you settle the score with your 
 Copy the two available codes in the respository and save them in the same directory.
 
 To _use_ the game, _run_ the **gui_interface.py** file in your [IDE](https://code.visualstudio.com/download).
+Warning _do not_ run the **player_moves_management.py** file.
 
 
 
